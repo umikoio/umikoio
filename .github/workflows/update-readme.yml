@@ -1,0 +1,89 @@
+name: Generate README
+
+on:
+  schedule:
+    - cron: "00 5 * * *"
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  # Probably not the most optimal way of doing this
+  # What I've done is used neofetch's config options (so I don't have to style it myself) to create my own README header
+  generate_readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Installing Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y neofetch curl
+          python3 -m pip install --upgrade pip
+          pip3 install pillow requests beautifulsoup4
+          git clone https://github.com/umikoio/thm-iframe-parser
+
+      - name: Configuring Neofetch & Primary Stats
+        run: |
+          mkdir -p ~/.config/neofetch
+          cat > ~/.config/neofetch/config.conf <<"EOF"
+          stdout="on"
+          print_info() {
+            prin "👾 User" "Umiko"
+            prin "📦 GitHub Repos" "$(curl -s https://api.github.com/users/umikoio | jq '.public_repos')"
+            prin "🕶️ GitHub Followers" "$(curl -s https://api.github.com/users/umikoio | jq '.followers')"
+            prin "🔐 TryHackMe Rank" "$(python3 ./thm-iframe-parser/thm-iframe-parser.py --user 5672619 | jq '.Data.Rank')"
+            prin "🔥 TryHackMe Streak" "$(python3 ./thm-iframe-parser/thm-iframe-parser.py --user 5672619 | jq -r '.Data.Streak')"
+            prin "🚪 TryHackMe Completed Rooms" "$(python3 ./thm-iframe-parser/thm-iframe-parser.py --user 5672619 | jq '.Data.CompletedRooms')"
+          }
+          EOF
+          neofetch --stdout > _readme_header.txt
+
+      - name: Generating SVG
+        run: |
+          python3 ./scripts/generate_svg.py
+
+      - name: Adding SVG To README
+        run: |
+          START="<!-- README-UPDATE-START -->"
+          END="<!-- README-UPDATE-END -->"
+          test -f README.md || touch README.md
+          if ! grep -q "$START" README.md || ! grep -q "$END" README.md; then
+            {
+              echo ""
+              echo "$START"
+              echo "(Generating...)"
+              echo "$END"
+            } >> README.md
+          fi
+          {
+            echo "$START"
+            echo ""
+            echo "![README Header](./readme_header.svg)"
+            echo ""
+            echo "$END"
+          } > _readme_block.md
+
+          awk -v start="$START" -v end="$END" '
+            BEGIN{printing=1}
+            $0 ~ start { printing=0; while ((getline line < "_readme_block.md") > 0) print line; close("_readme_block.md"); next }
+            $0 ~ end && !printing { printing=1; next }
+            printing { print }
+          ' README.md > README.new && mv README.new README.md
+
+      - name: Committing Updates
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "umikoio"
+            git config user.email "231703339+umikoio@users.noreply.github.com"
+            git add README.md readme_header.svg
+            git commit -m "chore(readme): Update README SVG ($(date -u +'%Y-%m-%d %H:%M:%S') UTC)"
+            git push
+          else
+            echo "No changes to commit"
+          fi
