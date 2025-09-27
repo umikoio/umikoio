@@ -9,7 +9,7 @@
 
 | GitHub Stats  |
 |---------------|
-| [![GitHub Stats](https://github-readme-streak-stats.herokuapp.com?user=umikoio&theme=highcontrast&border_radius=0&card_width=800&card_height=220)](https://github.com/umikoio) |
+| [![GitHub Stats](https://github-readme-streak-stats.herokuapp.com?user=umikoio&theme=highcontrast&border_radius=0&card_width=828&card_height=220)](https://github.com/umikoio) |
 
 # Support
 I have a few different methods for anyone who wants to support me financially. This is not required, just if you think something I created improved your life, workflow, or anything else!
