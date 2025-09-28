@@ -22,7 +22,9 @@ Ko-fi: https://ko-fi.com/umikoio
 # Contact
 I have a few different platforms that I'm available on!
 
-<!-- Discord: Coming soon -->
-Email: ping@umiko.io
+| Platform | Username                            |
+|----------|-------------------------------------|
+| Discord  | umikoio                             |
+| Email    | ping@umiko.io                       |
+| X        | [@umiko_io](https://x.com/umiko_io) |
 
-X (DMs): https://x.com/umiko_io
