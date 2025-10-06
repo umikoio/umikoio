@@ -4,6 +4,8 @@
 ![README Header](./readme_header.svg)
 
 <!-- README-UPDATE-END -->
+<figcaption>
+Created using a custom <a href="https://github.com/umikoio/umikoio/blob/main/.github/workflows/update-readme.yml">GitHub Actions workflow</a>.</figcaption>
 
 <p align="center">Just a dude writing code, playing video games, and hacking systems (ethically).</p>
 
@@ -15,9 +17,8 @@
 I have a few different methods for anyone who wants to support me financially. This is not required, just if you think something I created improved your life, workflow, or anything else!
 
 Ko-fi: https://ko-fi.com/umikoio
-<!-- Patreon: Coming soon -->
+Patreon: https://www.patreon.com/cw/umikoio
 <!-- GitHub: Coming soon -->
-
 
 # Contact
 I have a few different platforms that I'm available on!

@@ -4,9 +4,14 @@ name: Generate README
 on:
   schedule:
     - cron: "0 5 * * *"
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
+
+env:
+  TRYHACKME_USER_ID: 5672619
+  GITHUB_USERNAME: umikoio
+  GITHUB_EMAIL: 231703339+umikoio@users.noreply.github.com
 
 permissions:
   contents: write
@@ -37,9 +42,9 @@ jobs:
             prin "👾 User" "Umiko"
             prin "📦 GitHub Repos" "$(curl -s https://api.github.com/users/umikoio | jq '.public_repos')"
             prin "🕶️ GitHub Followers" "$(curl -s https://api.github.com/users/umikoio | jq '.followers')"
-            prin "🔐 TryHackMe Rank" "$(python3 ./thm-iframe-parser/thm-iframe-parser.py --user 5672619 | jq '.Data.Rank')"
-            prin "🔥 TryHackMe Streak" "$(python3 ./thm-iframe-parser/thm-iframe-parser.py --user 5672619 | jq -r '.Data.Streak')"
-            prin "🚪 TryHackMe Completed Rooms" "$(python3 ./thm-iframe-parser/thm-iframe-parser.py --user 5672619 | jq '.Data.CompletedRooms')"
+            prin "🔐 TryHackMe Rank" "$(python3 ./thm-iframe-parser/thm-iframe-parser.py --user $TRYHACKME_USER_ID | jq '.Data.Rank')"
+            prin "🔥 TryHackMe Streak" "$(python3 ./thm-iframe-parser/thm-iframe-parser.py --user $TRYHACKME_USER_ID | jq -r '.Data.Streak')"
+            prin "🚪 TryHackMe Completed Rooms" "$(python3 ./thm-iframe-parser/thm-iframe-parser.py --user $TRYHACKME_USER_ID | jq '.Data.CompletedRooms')"
           }
           EOF
           neofetch --stdout > _readme_header.txt
@@ -79,8 +84,8 @@ jobs:
       - name: Committing Updates
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then
-            git config user.name "umikoio"
-            git config user.email "231703339+umikoio@users.noreply.github.com"
+            git config user.name "$GITHUB_USERNAME"
+            git config user.email "$GITHUB_EMAIL"
             git add README.md readme_header.svg
             git commit -m "chore(readme): Update README SVG ($(date -u +'%Y-%m-%d %H:%M:%S') UTC)"
             git push
