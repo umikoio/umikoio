@@ -4,8 +4,6 @@
 ![README Header](./readme_header.svg)
 
 <!-- README-UPDATE-END -->
-<figcaption>
-Created using a custom <a href="https://github.com/umikoio/umikoio/blob/main/.github/workflows/update-readme.yml">GitHub Actions workflow</a>.</figcaption>
 
 <p align="center">Just a dude writing code, playing video games, and hacking systems (ethically).</p>
 

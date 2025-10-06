@@ -4,9 +4,9 @@ name: Generate README
 on:
   schedule:
     - cron: "0 5 * * *"
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 env:
   TRYHACKME_USER_ID: 5672619
