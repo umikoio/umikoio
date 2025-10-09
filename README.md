@@ -5,25 +5,18 @@
 
 <!-- README-UPDATE-END -->
 
-<p align="center">Just a dude writing code, playing video games, and hacking systems (ethically).</p>
+<p align="center">Just a dude writing code and hacking systems (ethically).</p>
 
 | GitHub Stats  |
 |---------------|
 | [![GitHub Stats](https://github-readme-streak-stats.herokuapp.com?user=umikoio&theme=highcontrast&border_radius=0&card_width=828&card_height=220)](https://github.com/umikoio) |
 
-# Support
-I have a few different methods for anyone who wants to support me financially. This is not required, just if you think something I created improved your life, workflow, or anything else!
-
-Ko-fi: https://ko-fi.com/umikoio
-Patreon: https://www.patreon.com/cw/umikoio
-<!-- GitHub: Coming soon -->
 
 # Contact
-I have a few different platforms that I'm available on!
+I have a few different platforms that I'm available on.
 
 | Platform | Username                            |
 |----------|-------------------------------------|
 | Discord  | umikoio                             |
 | Email    | ping@umiko.io                       |
 | X        | [@umiko_io](https://x.com/umiko_io) |
-
